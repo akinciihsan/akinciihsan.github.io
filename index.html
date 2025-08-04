@@ -16,6 +16,34 @@
       justify-content: center;
       min-height: 100vh;
       padding: 2rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Dalgalı arka plan animasyonu */
+    body::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 30%, rgba(128, 0, 255, 0.15), transparent 50%),
+                  radial-gradient(circle at 70% 70%, rgba(0, 128, 255, 0.15), transparent 50%);
+      animation: moveBackground 12s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes moveBackground {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+      50% {
+        transform: rotate(180deg) scale(1.05);
+      }
+      100% {
+        transform: rotate(360deg) scale(1);
+      }
     }
 
     h1 {
@@ -182,8 +210,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
