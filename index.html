@@ -1,110 +1,169 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Çok Yakında - Lumox</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumox Siber Güvenlik</title>
   <style>
     body {
-      background: #0f172a;
-      color: #f1f5f9;
+      margin: 0;
+      background: #0a0012;
+      color: #f1f1f1;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       min-height: 100vh;
-      text-align: center;
-      padding: 0 1rem;
+      padding: 2rem 1rem;
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin-bottom: 0.5rem;
+      color: #ffffff;
+      letter-spacing: 1px;
     }
 
-    p {
-      font-size: 1.2rem;
+    .coming-soon {
+      font-size: 0.95rem;
+      color: #8888aa;
       margin-bottom: 2rem;
-      color: #94a3b8;
+    }
+
+    .panel {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(6px);
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .typewriter {
+      font-family: monospace;
+      font-size: 1.1rem;
+      color: #bbbbdd;
+      height: 1.5rem;
+      margin-bottom: 1.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 1ch;
+      color: #bbbbdd;
+      animation: blink 1s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
     .countdown {
-      font-size: 2rem;
-      margin-bottom: 2rem;
       display: flex;
+      justify-content: center;
       gap: 1rem;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
     }
 
     .countdown span {
-      background: #1e293b;
-      padding: 0.8rem 1.2rem;
-      border-radius: 8px;
-      min-width: 60px;
-    }
-
-    input[type="email"] {
-      padding: 0.7rem;
-      border-radius: 5px;
-      border: none;
-      outline: none;
-      width: 220px;
-    }
-
-    button {
-      padding: 0.7rem 1.2rem;
-      border-radius: 5px;
-      border: none;
-      background: #3b82f6;
-      color: white;
-      cursor: pointer;
-      margin-left: 0.5rem;
-    }
-
-    button:hover {
-      background: #2563eb;
+      background: #1a0022;
+      padding: 0.7rem 1.1rem;
+      border-radius: 6px;
+      min-width: 70px;
     }
 
     footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #64748b;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #666;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
       h1 {
         font-size: 2rem;
       }
       .countdown {
         flex-direction: column;
-        gap: 0.5rem;
+        align-items: center;
       }
     }
   </style>
 </head>
 <body>
-  <h1>Lumox Çok Yakında!</h1>
-  <p>Yeni deneyimler için hazırlanıyoruz. Bizi takipte kalın.</p>
 
-  <div class="countdown">
-    <span id="days">--</span>
-    <span id="hours">--</span>
-    <span id="minutes">--</span>
-    <span id="seconds">--</span>
+  <h1>Lumox</h1>
+  <div class="coming-soon">Çok Yakında</div>
+
+  <div class="panel">
+    <div class="typewriter">
+      <span id="typewriter-text"></span><span class="cursor">|</span>
+    </div>
+
+    <div class="countdown">
+      <span id="days">--</span>
+      <span id="hours">--</span>
+      <span id="minutes">--</span>
+      <span id="seconds">--</span>
+    </div>
+
+    <footer>&copy; 2025 Lumox Siber Güvenlik</footer>
   </div>
 
-  <form onsubmit="return false;">
-    <input type="email" placeholder="E-posta adresiniz" required>
-    <button type="submit">Bilgi Al</button>
-  </form>
-
-  <footer>&copy; 2025 Lumox. Tüm hakları saklıdır.</footer>
-
   <script>
-    // Geri sayım tarihi (örnek: 1 Kasım 2025)
+    // Typewriter mesajları
+    const messages = [
+      "Ağ yapılandırması yükleniyor...",
+      "Tehdit analizi başlatıldı...",
+      "Sistem modülleri hazırlanıyor...",
+      "Güvenlik duvarı devrede.",
+    ];
+
+    let part = 0;
+    let partIndex = 0;
+    let currentText = '';
+    let isDeleting = false;
+    const speed = 60;
+    const textElement = document.getElementById("typewriter-text");
+
+    function typeEffect() {
+      const fullText = messages[part];
+
+      if (isDeleting) {
+        currentText = fullText.substring(0, partIndex--);
+      } else {
+        currentText = fullText.substring(0, partIndex++);
+      }
+
+      textElement.textContent = currentText;
+
+      if (!isDeleting && partIndex === fullText.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 1500);
+      } else if (isDeleting && partIndex === 0) {
+        isDeleting = false;
+        part = (part + 1) % messages.length;
+        setTimeout(typeEffect, 500);
+      } else {
+        setTimeout(typeEffect, speed);
+      }
+    }
+
+    typeEffect();
+
+    // Geri sayım (1 Kasım 2025)
     const targetDate = new Date("2025-11-01T00:00:00").getTime();
 
-    const countdown = () => {
+    function updateCountdown() {
       const now = new Date().getTime();
       const diff = targetDate - now;
 
@@ -117,10 +176,10 @@
       document.getElementById("hours").innerText = hours + "s";
       document.getElementById("minutes").innerText = minutes + "d";
       document.getElementById("seconds").innerText = seconds + "sn";
-    };
+    }
 
-    countdown();
-    setInterval(countdown, 1000);
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
