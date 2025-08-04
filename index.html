@@ -20,7 +20,6 @@
       overflow: hidden;
     }
 
-    /* Dalgalı arka plan animasyonu */
     body::before {
       content: '';
       position: absolute;
@@ -167,11 +166,12 @@
       const fullText = messages[part];
 
       if (isDeleting) {
-        currentText = fullText.substring(0, partIndex--);
+        partIndex = Math.max(partIndex - 1, 0);
       } else {
-        currentText = fullText.substring(0, partIndex++);
+        partIndex = Math.min(partIndex + 1, fullText.length);
       }
 
+      currentText = fullText.substring(0, partIndex);
       textElement.textContent = currentText;
 
       if (!isDeleting && partIndex === fullText.length) {
