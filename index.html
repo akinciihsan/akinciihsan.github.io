@@ -1,11 +1,126 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Merhaba Dünya</title>
-  </head>
-  <body>
-    <h1>Bu site GitHub Pages + Cloudflare ile yayında!</h1>
-  </body>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Çok Yakında - Lumox</title>
+  <style>
+    body {
+      background: #0f172a;
+      color: #f1f5f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #94a3b8;
+    }
+
+    .countdown {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .countdown span {
+      background: #1e293b;
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      min-width: 60px;
+    }
+
+    input[type="email"] {
+      padding: 0.7rem;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      width: 220px;
+    }
+
+    button {
+      padding: 0.7rem 1.2rem;
+      border-radius: 5px;
+      border: none;
+      background: #3b82f6;
+      color: white;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .countdown {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Lumox Çok Yakında!</h1>
+  <p>Yeni deneyimler için hazırlanıyoruz. Bizi takipte kalın.</p>
+
+  <div class="countdown">
+    <span id="days">--</span>
+    <span id="hours">--</span>
+    <span id="minutes">--</span>
+    <span id="seconds">--</span>
+  </div>
+
+  <form onsubmit="return false;">
+    <input type="email" placeholder="E-posta adresiniz" required>
+    <button type="submit">Bilgi Al</button>
+  </form>
+
+  <footer>&copy; 2025 Lumox. Tüm hakları saklıdır.</footer>
+
+  <script>
+    // Geri sayım tarihi (örnek: 1 Kasım 2025)
+    const targetDate = new Date("2025-11-01T00:00:00").getTime();
+
+    const countdown = () => {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days + "g";
+      document.getElementById("hours").innerText = hours + "s";
+      document.getElementById("minutes").innerText = minutes + "d";
+      document.getElementById("seconds").innerText = seconds + "sn";
+    };
+
+    countdown();
+    setInterval(countdown, 1000);
+  </script>
+</body>
 </html>
