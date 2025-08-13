@@ -52,10 +52,6 @@
     .cursor{display:inline-block;width:1ch;color:#bbbbdd;animation:blink 1s steps(2,start) infinite}
     @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
     .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:1rem auto .8rem;width:100%}
-    /* Çizgi yüklenme */
-    .bar-wrap{margin:.8rem auto 0; height:3px; width:80%; background:rgba(255,255,255,.08); overflow:hidden; border-radius:2px}
-    .bar{height:100%; width:40%; background:linear-gradient(90deg,#8a2be2,#3aa0ff); animation:loadMove 2s infinite}
-    @keyframes loadMove{ 0%{transform:translateX(-100%)} 50%{transform:translateX(50%)} 100%{transform:translateX(200%)} }
     footer{margin-top:1rem;font-size:.9rem;color:#7d76a3}
     .panel:focus-visible{outline:2px solid rgba(138,43,226,.5); outline-offset:2px; border-radius:14px}
     @media (prefers-reduced-motion: reduce){
@@ -79,10 +75,6 @@
       </div>
 
       <div class="divider" role="presentation"></div>
-
-      <div class="bar-wrap" aria-hidden="true">
-        <div class="bar"></div>
-      </div>
 
       <footer>&copy; 2025 Lumox - Tüm hakları saklıdır.</footer>
     </div>
